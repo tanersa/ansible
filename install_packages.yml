@@ -1,0 +1,31 @@
+---
+- name: Install packages
+  hosts: vmware
+  become: true
+  tasks:
+  - name: Install git
+    yum:
+      name: git
+      state: present
+  - name: Install tree
+    yum:
+      name: tree
+      state: present
+  - name: Create a file
+    file:
+      path: /home/loser/loserfile
+      state: touch
+
+  - name: Create a directory
+    file:
+      path: /home/loser/loserpath
+      state: directory
+      owner: ec2-user
+
+  - name: Copy file to remote host
+    copy:
+      src: /opt/ansible/index.html
+      dest: /home/loser
+      mode: 0600
+      owner: loser
+      group: loser 
