@@ -1,0 +1,33 @@
+--- 
+- name: Setup Tomcat 
+  hosts: webservers
+  become: true
+  tasks:
+  - name: Install java
+    yum:
+      name: java
+      state: installed
+    when: ansible_os_family == "RedHat"
+
+  - name: Download tomcat packages
+    get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.75/bin/apache-tomcat-8.5.75.tar.gz
+      dest: /opt 
+
+  - name: Untar package 
+    unarchive:
+      src: /opt/apache-tomcat-8.5.75.tar.gz
+      dest: /opt
+      remote_src: yes
+
+  - name: Add permissions startup file 
+    file:
+      path: /opt/apache-tomcat-8.5.75/bin/startup.sh
+      mode: 0777
+
+  - name: Start Tomcat
+    shell: nohup ./startup.sh
+    args:
+      chdir: /opt/apache-tomcat-8.5.75/bin
+
+      

@@ -1,0 +1,29 @@
+--- 
+- name: Install apache packages 
+  hosts: all
+  become: true 
+  gather_facts: true
+  tasks:
+  
+  - name: install apache 
+    yum:
+      name: httpd 
+      state: installed
+    when: ansible_os_family == "RedHat"
+  - name: Start apache service 
+    service:
+      name: httpd 
+      state: started 
+    when: ansible_os_family == "RedHat"
+
+  - name: Install apache ubuntu
+    apt: 
+      name: apache2
+      state: present
+    when: ansible_os_family == "Debian" 
+
+  - name: Start apache ubuntu
+    service:
+      name: apache2
+      state: started 
+    when: ansible_os_family == "Debian"
