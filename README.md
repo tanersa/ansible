@@ -1,5 +1,6 @@
    ****HOW TO INSTALL PACKAGES AND APACHE BY LEVERAGING ANSIBLE****
 
+![alt text](https://github.com/tanersa/ansible/blob/feature/ansible-install/Ansible-8.png)
 
 
    **ANSIBLE** is an open source automation engine which can automate:
