@@ -149,6 +149,15 @@
    **TO DEPLOY CHANGES:**
      
    -  ansible-playbook -i hosts install-packages.yml
+
+   **TO VERIFY INSTALATION:**
+
+You may just go to second machine and run **"git"** command. 
+
+If you see flags, it means git is **installed.**
+
+    Note: If you would like to remove git from the machine, you just need to update the state of the install package task to **absent**. Then git will be removed       from your machine.
+
    
    
    
