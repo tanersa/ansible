@@ -150,7 +150,7 @@
      
    -  ansible-playbook -i hosts install-packages.yml
 
-   **TO VERIFY INSTALATION:**
+   **TO VERIFY INSTALLATION:**
 
 You may just go to second machine and run **"git"** command. 
 
