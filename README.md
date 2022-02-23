@@ -54,6 +54,23 @@
   If we get **SUCCESS** message, it means we can ping remote machines. From now, you can do all configuration against the ansible machine.
   
   Let's go to operations folder and create our first **playbook** under **"/opt/"** directory
+  
+  Be carefull, **owner** of the ansible file should be the userID you added for that machine:
+  
+  If it's not you may need to change the ownerby running:
+  
+   -  sudo chown userID:GroupID ansible/  
+
+**_First Playbook File:_**
+     
+     create_user.yml 
+      ---
+      - hosts: all
+        become: true
+        tasks:
+        - name: create user
+          user:
+            name: Shark
     
 
    
