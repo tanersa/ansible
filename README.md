@@ -23,7 +23,7 @@
    
    Let's set up our Control Node with Linux Machine **(VM)**. To do this, we need to add the private ip of Linux Machine to the host file.
    Then create a user on the same machine because we will take our action on user level. 
-   Next, update the sudoer file with running **"visudo"** command and give password authentication to the user.
+   Next, update the sudoer file with running **"visudo"** command and give password authentication to the user on root level not user level.
    
    -  user1    ALL=(ALL)     NOPASSWD=ALL
 
@@ -38,7 +38,24 @@
    
    Secondly, create your one of **managed nodes** as **RedHat machine**. Therefore, launch instance for it on EC2 service. 
    
+   Do the above steps for this managed machine as well.
    
+      Note: We always have to create host file on user level not root level
+      
+**Then**, its time to add private ip of managed machine to host file of control machine, so those machines can communicate to each other.
+
+   For that we can run:  
+   -  ssh-copy-id {managed-machine-private-ip}
+
+   We also can verify connection between control machine and managed machines...
+   -  ansible all -i hosts -m ping -w
+
+
+  If we get **SUCCESS** message, it means we can ping remote machines. From now, you can do all configuration against the ansible machine.
+  
+  Let's go to operations folder and create our first **playbook** under **"/opt/"** directory
+    
+
    
    
    
