@@ -21,3 +21,11 @@
    
    Only we need to do is to build ssh connections with **managed machines** and control the process from Control Node.
    
+   Let's set up our Control Node with Linux Machine **(VM)**. To do this, we need to add the private ip of Linux Machine to the host file.
+   Then create a user on the same machine because we will take our action on user level. 
+   Next, update the sudoer file with running **"visudo"** command and give password authentication to the user.
+   
+   -  user1 ALL=(ALL)   NOPASSWD=ALL
+
+   Next, generate public and private keys by executing **"ssh-keygen"** command
+   
