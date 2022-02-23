@@ -76,6 +76,81 @@
    -  All hosts corresponds all VMs available
    -  become: true defines we are running this file as a root user.
    
+   Now, lets set up our third machine **(second managed node)**.
+   
+   This will be an Amazon Linux machine as well. Then do the same above step for first managed machine and copy of private ip of third machine to host file of          Control Node.
+   
+   Check the connection by running below command:
+   -  ansible all -i home/userid/hosts -m ping -w
+   
+           Note: You may want to change the hostname of your machine by simply runnnig:
+                 vim etc/hostname (using vim editor)    
+                 
+                 
+  Now, lets run our playbook file and see what happens:
+    
+   -  ansible-playbook -i /home/userID/hosts create_user.yml
+
+ **TASK - create_user**
+ 
+ OK         (managed machine-1)
+ 
+ changed    (managed machine-2)
+
+   We are able to create a user named **Shark** with one of the machines. 
+
+   Verify the user creation by checking this directory:
+   **cat /home/passwd**
+
+   **shark .... home/shark**
+   
+   For other machine, there is no change so there will **Item Potency** for that.
+   This is another part of the reason why Ansible is so powerfull.
+   Ansible is **ITEM POTENT**.
+   
+   Lets create another playbook file called **install-packages.yml** file
+   And add all below tasks:
+   -  ---
+      - name: Install packages
+        hosts: vmware
+        become: true
+        tasks:
+        - name: Install git
+          yum:
+            name: git
+            state: present
+        - name: Install tree
+          yum:
+            name: tree
+            state: present
+        - name: Create a file
+          file:
+            path: /home/userID/loserfile
+            state: touch
+
+        - name: Create a directory
+          file:
+            path: /home/userID/loserpath
+            state: directory
+            owner: ec2-user
+
+        - name: Copy file to remote host
+          copy:
+            src: /opt/ansible/index.html
+            dest: /home/userID
+            mode: 0600
+            owner: userID
+            group: groupID 
+   
+   
+     
+   
+   
+   
+   
+   
+   
+   
    
    
    
