@@ -156,11 +156,50 @@ You may just go to second machine and run **"git"** command.
 
 If you see flags, it means git is **installed.**
 
-    Note: If you would like to remove git from the machine, you just need to update the state of the install package task to **absent**. Then git will be removed       from your machine.
+    Note: If you would like to remove git from the machine, you just need to update the state of the install package task 
+          to absent. Then git will be removed from your machine.
+          
+  In order to install apache and start the apache service, you may need to run below playbook:
+  
+      --- 
+      - name: Install apache packages 
+        hosts: all
+        become: true 
+        gather_facts: true
+        tasks:
 
+        - name: install apache 
+          yum:
+            name: httpd 
+            state: installed
+          when: ansible_os_family == "RedHat"
+        - name: Start apache service 
+          service:
+            name: httpd 
+            state: started 
+          when: ansible_os_family == "RedHat"
+
+        - name: Install apache ubuntu
+          apt: 
+            name: apache2
+            state: present
+          when: ansible_os_family == "Debian" 
+
+        - name: Start apache ubuntu
+          service:
+            name: apache2
+            state: started 
+          when: ansible_os_family == "Debian"
    
    
-   
+  As you can see from the above playbook file, we leveraged yum, service, apt modules from ansible. Addittonally, we added **gather_facts**
+  attribute in order to gather facts whenever we run this file. 
+  
+   -  **yum** - amazon linux install package manager
+   -  **apt** - Ubuntu install package manager
+   -  **service** -  ansible module for apache
+   -  **when** keyword allow us to match with Operating System (OS). If there is correct OS is running then do the task. Otherwise, just skip the task. 
+  
    
    
    
