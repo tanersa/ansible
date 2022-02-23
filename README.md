@@ -108,8 +108,7 @@
    This is another part of the reason why Ansible is so powerfull.
    Ansible is **ITEM POTENT**.
    
-   Lets create another playbook file called **install-packages.yml** file
-   And add all below tasks:
+   Lets create another playbook file called **install-packages.yml** file and add all below tasks:
    -  ---
       - name: Install packages
         hosts: vmware
@@ -142,8 +141,14 @@
             owner: userID
             group: groupID 
    
+   In above example, our hosts are VMs that are in the same group called **"vmware"**.
    
+        As you can see, you can have multiple taks with different modules in one ansible playbook.
+   
+   
+   **TO DEPLOY CHANGES:**
      
+   -  ansible-playbook -i hosts install-packages.yml
    
    
    
