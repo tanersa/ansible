@@ -160,7 +160,8 @@ If you see flags, it means git is **installed.**
           to absent. Then git will be removed from your machine.
           
   In order to install apache and start the apache service, you may need to run below playbook:
-  
+      
+      install_apache.yml
       --- 
       - name: Install apache packages 
         hosts: all
@@ -191,6 +192,8 @@ If you see flags, it means git is **installed.**
             state: started 
           when: ansible_os_family == "Debian"
    
+   Run playbook:
+   -  ansible-playbook -i hosts install_apache.yml   
    
   As you can see from the above playbook file, we leveraged yum, service, apt modules from ansible. Addittonally, we added **gather_facts**
   attribute in order to gather facts whenever we run this file. 
