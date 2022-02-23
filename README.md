@@ -72,7 +72,9 @@
           user:
             name: Shark
     
-
+   -  Above, we used user module from Ansible.
+   -  All hosts corresponds all VMs available
+   -  become: true defines we are running this file as a root user.
    
    
    
