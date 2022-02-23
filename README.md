@@ -25,7 +25,26 @@
    Then create a user on the same machine because we will take our action on user level. 
    Next, update the sudoer file with running **"visudo"** command and give password authentication to the user.
    
-   -  user1 ALL=(ALL)   NOPASSWD=ALL
+   -  user1    ALL=(ALL)     NOPASSWD=ALL
 
    Next, generate public and private keys by executing **"ssh-keygen"** command
+   
+   We update the **sshd_config** file under correct directory (/etc/ssh/sshd_config) to **PasswordAuthentication  YES**
+   
+   Start the sshd service with following command:
+   -  service sshd start
+   
+   Now, we configured our **Control Machine** successfully.
+   
+   Secondly, create your one of **managed nodes** as **RedHat machine**. Therefore, launch instance for it on EC2 service. 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
